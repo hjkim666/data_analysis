@@ -1,0 +1,15 @@
+set.seed(1)
+train<-iris[sample(nrow(iris),100,replace=F),]
+test<-iris[sample(nrow(iris),50,replace=F),]
+train_label<-train[,5]
+test_label<-test[,5]
+train_data<-train[,-5]
+test_data<-test[,-5]
+train_data
+test_data
+library(class)
+m<-knn(train_data,test_data,cl=train_label,k=10)
+m
+table(m,test_label)
+x<-table(m,test_label)
+sum(diag(x))/sum(x)
